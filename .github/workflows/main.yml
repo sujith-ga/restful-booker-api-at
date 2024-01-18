@@ -3,7 +3,7 @@ name: Test restful-booker API
 
 on:
   push:
-    branches: [ main ]
+    branches: [ temp ]
 
 jobs:
   build:
@@ -11,19 +11,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+      
+    - name: Navigate to project directory
+      run: cd restful-booker
+
+    - name: Initialize and update submodules
+      run: git submodule update --init --recursive
 
     - name: Use Node.js
       uses: actions/setup-node@v2
-
+      
     - name: Install dependencies
       run: |
         cd restful-booker
-        npm ci
-
-    - name: Start the server
+        npm install
+    - name: Run server
       run: |
         cd restful-booker
-        npm start
+        npm start &
 
     - name: Run Newman tests
       uses: matt-ball/newman-action@master
