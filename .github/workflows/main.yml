@@ -1,0 +1,34 @@
+
+name: Test restful-booker API
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: |
+        cd restful-booker/
+        npm ci
+
+    - name: Start the server
+      run: |
+        cd ./restful-booker/
+        npm start
+
+    - name: Run Newman tests
+      uses: matt-ball/newman-action@master
+      with:
+        collection: ./Restful Booker API.postman_collection.json
+        environment: ./Restful booker - Local.postman_environment.json
