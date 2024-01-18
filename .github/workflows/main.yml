@@ -14,17 +14,19 @@ jobs:
       with:
         submodules: recursive
       
-    - name: Use Node.js
-      uses: actions/setup-node@v2
-      
     - name: Navigate to project directory
       run: cd restful-booker
 
     - name: Initialize and update submodules
       run: git submodule update --init --recursive
+
+    - name: Use Node.js
+      uses: actions/setup-node@v2
       
     - name: Install dependencies
-      run: npm install
+      run: |
+        cd restful-booker-api-at/restful-booker
+        npm install
 
     - name: Start the server
       run: npm start
