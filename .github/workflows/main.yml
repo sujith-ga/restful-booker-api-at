@@ -3,7 +3,7 @@ name: Test restful-booker API
 
 on:
   push:
-    branches: [ temp ]
+    branches: [ main ]
 
 jobs:
   build:
