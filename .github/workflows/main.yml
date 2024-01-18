@@ -3,7 +3,7 @@ name: Test restful-booker API
 
 on:
   push:
-    branches: [ main ]
+    branches: [ temp ]
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
     - name: Install dependencies
       run: |
         cd restful-booker
-        npm ci
+        npm install
 
     - name: Start the server
       run: |
