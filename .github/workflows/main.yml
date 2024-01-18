@@ -30,7 +30,7 @@ jobs:
     - name: Run server
       run: |
         cd restful-booker
-        npm start
+        npm start &
 
     - name: Run Newman tests
       uses: matt-ball/newman-action@master
