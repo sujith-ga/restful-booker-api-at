@@ -27,9 +27,7 @@ jobs:
       run: |
         cd restful-booker
         npm install
-
-    - name: Start the server
-      run: npm start
+        npm start
 
     - name: Run Newman tests
       uses: matt-ball/newman-action@master
